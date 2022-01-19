@@ -1,7 +1,12 @@
-const { Collection, Client } = require('discord.js');
-const client = new Client({intents: 32767});
-const fs = require('fs')
-require('dotenv').config()
+require('dotenv').config();
+const fs = require('fs');
+const { Collection, Client, Intents } = require('discord.js');
+const client = new Client({
+	intents: [
+		Intents.FLAGS.GUILDS,
+		Intents.FLAGS.GUILD_MESSAGES,
+	]
+});
 
 client.commands = new Collection();
 

@@ -13,10 +13,15 @@ npm i dotenv
 <h3>Index</h3>
 
 ```js
-const { Collection, Client } = require('discord.js');
-const client = new Client({intents: 32767});
-const fs = require('fs')
-require('dotenv').config()
+require('dotenv').config();
+const fs = require('fs');
+const { Collection, Client, Intents } = require('discord.js');
+const client = new Client({
+	intents: [
+		Intents.FLAGS.GUILDS,
+		Intents.FLAGS.GUILD_MESSAGES,
+	]
+});
 
 client.commands = new Collection();
 
@@ -116,7 +121,7 @@ module.exports = {
 	aliases: ['latencia', 'latency'], // Se você quiser usar um apelido para o seu comando, coloque aqui
 	async execute(client, message) {
 		const msg = await message.channel.send('Pinging...');
-		msg.edit(`BOT: ${Math.round(client.ws.ping)}ms\nAPI: ${msg.createdTimestamp - message.createdTimestamp}ms`);
+		msg.edit(`Pong 🏓\nBOT: ${Math.round(client.ws.ping)}ms\nAPI: ${msg.createdTimestamp - message.createdTimestamp}ms`);
 	},
 };
 ```
